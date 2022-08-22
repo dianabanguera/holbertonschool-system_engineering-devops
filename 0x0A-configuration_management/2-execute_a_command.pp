@@ -1,7 +1,7 @@
 #  create a manifest that kills a process named killmenow
 
 exec { 'pkill':
-  command => 'pkill -f killmenow',
+  command  => 'pkill -f killmenow',
   provider => 'shell',
-  returns => [0, 1],
+  returns  => [0, 1],
 }
