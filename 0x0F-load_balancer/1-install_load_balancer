@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# configure haproxy
+
+sudo apt-get -y update
+sudo apt-get -y install haproxy
+sudo chmod 777 /etc/haproxy/
+sed -i '/errorfile 504/a listen marce_server' /etc/haproxy/haproxy.cfg
+sed -i '/listen marce_server/a         bind :80' /etc/haproxy/haproxy.cfg
+sed -i '/bind :80/a         mode http' /etc/haproxy/haproxy.cfg
+sed -i '/mode http/a         balance roundrobin' /etc/haproxy/haproxy.cfg
+sed -i '/balance roundrobin/a         server 4699-web-01 54.91.206.11:80 check' /etc/haproxy/haproxy.cfg
+sed -i '/server 4699-web-01 54.91.206.11:80 check/a         server 4699-web-02 34.228.10.251:80 check' /etc/haproxy/haproxy.cfg
+sed -i '/#EXTRAOPTS="-de -m 16"/a ENABLED=1' /etc/default/haproxy
+service haproxy start
