@@ -47,8 +47,7 @@ frontend www-https
         default_backend www-backend
 
 backend www-backend
-                redirect backend www-backen
-                redirect scheme https if !{ ssl_fc }
-                balance roundrobin
-                server 4699-web-01 54.91.206.11:80 check
-                server 4699-web-02 34.228.10.251:80 check
+        redirect scheme https if !{ ssl_fc }
+        balance roundrobin
+        server 4699-web-01 54.91.206.11:80 check
+        server 4699-web-02 34.228.10.251:80 check
