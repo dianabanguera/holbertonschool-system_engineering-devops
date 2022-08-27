@@ -36,13 +36,13 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 
 frontend www-http
-        bind :80
+        bind *:80
         mode http
         reqadd X-Forwarded-Proto:\ http
         default_backend www-backend
 
 frontend www-https
-        bind:443 ssl crt /etc/haproxy/certs/www.dmarce.tech.pem
+        bind *:443 ssl crt /etc/haproxy/certs/www.dmarce.tech.pem
         reqadd X-Forwarded-Proto:\ https
         default_backend www-backend
 
